@@ -1,26 +1,37 @@
 package org.devpalsboot.auth.token.domain;
 
+import java.util.Date;
+
 import org.devpalsboot.auth.user.domain.User;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class TokenTest {
 
     @Test
-    public void createTest() {
+    public void accessToken을_재발급_할_수_있다() {
+        //given
         User user = new User();
-        user.setEmail("email@google.com");
+        user.setEmail("test@sparrow.im");
         user.setPassword("password");
+
         Token token = Token.builder()
                 .user(user)
+                .accessToken("access-token")
+                .refreshToken("refresh-token")
                 .build();
+        String newAccessToken = "new-access-token";
 
-        token.create();
+        // when
+        token = token.reissueAccessToken(newAccessToken);
 
-        assertNotNull(token.getAccessToken());
-        assertNotNull(token.getRefreshToken());
-        assertNotNull(token.getRefreshTokenExpiryTime());
+        // then
+        assertThat(token.getUser().getEmail()).isEqualTo("test@sparrow.im");
+        assertThat(token.getUser().getPassword()).isEqualTo("password");
+        assertThat(token.getAccessToken()).isEqualTo(newAccessToken);
+        assertThat(token.getRefreshToken()).isEqualTo("refresh-token");
+
     }
 
 }

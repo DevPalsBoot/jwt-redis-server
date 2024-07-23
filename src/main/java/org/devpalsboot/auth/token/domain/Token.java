@@ -9,41 +9,29 @@ import lombok.Getter;
 
 @Getter
 public class Token {
-    private String accessToken;
-    private String refreshToken;
-    private User user;
-    private Date refreshTokenExpiryTime;
+    private final User user;
+    private final String accessToken;
+    private final String refreshToken;
+    private final Date refreshTokenExpiryTime;
 
     @Builder
-    public Token(User user) {
+    public Token(User user, String accessToken, String refreshToken, Date refreshTokenExpiryTime) {
         this.user = user;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.refreshTokenExpiryTime = refreshTokenExpiryTime;
     }
 
-    /**
-     * token 발급
-     */
-    public void create() {
-        this.accessToken = generateAccessToken();
-        this.refreshToken = generateRefreshToken();
-        this.refreshTokenExpiryTime = calExpiryTime();
-    }
-
-    private String generateAccessToken() {
-        return "generated-access-token";
-    }
-
-    private String generateRefreshToken() {
-        return "generated-refresh-token";
-    }
-
-    private Date calExpiryTime() {
-        // expire time : 1D
-        return new Date(System.currentTimeMillis() + 86400000);
-    }
 
     /**
      * access token 재발급
      */
-    public void reissueAccessToken(String newAccessToken) {
+    public Token reissueAccessToken(String newAccessToken) {
+        return Token.builder()
+                .user(user)
+                .accessToken(newAccessToken)
+                .refreshToken(refreshToken)
+                .refreshTokenExpiryTime(refreshTokenExpiryTime)
+                .build();
     }
 }
