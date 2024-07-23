@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.devpalsboot.auth.common.infrastructure.UserPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 // 로그인은 시큐리티에서..
 @Data
@@ -13,11 +15,12 @@ import lombok.NoArgsConstructor;
 public class User {
     private String password;
     private String email;
-    public User createUser(UserCreate userCreate) {
-        // 이미 존재하는 비밀번호인지 확인
+    private String encryptPassword;
+    public User createUser(UserCreate userCreate, PasswordEncoder userPasswordEncoder) {
         return User.builder()
                 .email(userCreate.getEmail())
                 .password(userCreate.getPassword())
+                .encryptPassword(userPasswordEncoder.encode(password))
                 .build();
     }
     public void logout() {
