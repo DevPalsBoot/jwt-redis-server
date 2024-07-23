@@ -1,19 +1,18 @@
 package org.devpalsboot.auth.user.domain;
 
 import lombok.Data;
-
-import java.util.Date;
+import org.devpalsboot.auth.common.service.ClockHolder;
 
 @Data
 public class User {
     private String email;
     private String password;
-    private Date loginDateTime;
+    private Long loginDateTime;
 
     /**
      * 로그인
      */
-//    public void login(ClockHolder clockHolder) {
-//
-//    }
+    public void login(ClockHolder clockHolder) {
+        this.loginDateTime = clockHolder.millis();
+    }
 }
