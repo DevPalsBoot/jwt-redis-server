@@ -1,4 +1,6 @@
-package org.devpalsboot.auth.domain;
+package org.devpalsboot.auth.token.domain;
+
+import org.devpalsboot.auth.user.domain.User;
 
 public class Token {
     private User user;
