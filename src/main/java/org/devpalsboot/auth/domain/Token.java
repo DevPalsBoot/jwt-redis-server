@@ -1,13 +1,15 @@
 package org.devpalsboot.auth.domain;
 
+import lombok.Builder;
+
 public class Token {
-    private User user;
     private String accessToken;
     private String refreshToken;
 
-    public Token createToken(User user) {
-        // 새 토큰을 생성한다
-        return null;
+    @Builder
+    public Token(String accessToken, String refreshToken) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
     }
 
     public void reissueAccessToken(String newAccessToken) throws IllegalAccessException {
