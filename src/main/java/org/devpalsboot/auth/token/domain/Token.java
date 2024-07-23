@@ -15,26 +15,35 @@ public class Token {
     private Date refreshTokenExpiryTime;
 
     @Builder
-    public Token(String accessToken, String refreshToken, User user, Date refreshTokenExpiryTime) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
+    public Token(User user) {
         this.user = user;
-        this.refreshTokenExpiryTime = refreshTokenExpiryTime;
     }
 
     /**
      * token 발급
      */
-    public void createToken() {
-        throw new RuntimeException("failed to create token");
+    public void create() {
+        this.accessToken = generateAccessToken();
+        this.refreshToken = generateRefreshToken();
+        this.refreshTokenExpiryTime = calExpiryTime();
+    }
+
+    private String generateAccessToken() {
+        return "generated-access-token";
+    }
+
+    private String generateRefreshToken() {
+        return "generated-refresh-token";
+    }
+
+    private Date calExpiryTime() {
+        // expire time : 1D
+        return new Date(System.currentTimeMillis() + 86400000);
     }
 
     /**
      * access token 재발급
-     *
-     * @param newAccessToken
      */
     public void reissueAccessToken(String newAccessToken) {
-        throw new RuntimeException("failed to reissue access token.");
     }
 }
