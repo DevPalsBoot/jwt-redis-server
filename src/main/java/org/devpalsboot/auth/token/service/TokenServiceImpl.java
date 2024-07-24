@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.devpalsboot.auth.token.TokenService;
 import org.devpalsboot.auth.token.domain.Token;
-import org.devpalsboot.auth.user.domain.User;
+import org.devpalsboot.auth.user.domain.UserDomain;
 
 public class TokenServiceImpl implements TokenService {
 
@@ -14,7 +14,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Token create(User user) {
+    public Token create(UserDomain user) {
         Token token = Token.builder()
                 .user(user)
                 .accessToken(generateAccessToken())

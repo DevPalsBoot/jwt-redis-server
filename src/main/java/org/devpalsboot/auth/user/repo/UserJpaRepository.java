@@ -1,4 +1,7 @@
 package org.devpalsboot.auth.user.repo;
 
-public interface UserJpaRepository {
+import org.devpalsboot.auth.user.entity.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserJpaRepository extends JpaRepository<UserEntity, Long> {
 }

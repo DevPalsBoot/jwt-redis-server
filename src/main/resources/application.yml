@@ -6,6 +6,6 @@ spring:
       host: 127.0.0.1
       port: 6379
   datasource:
-    url: jdbc:postgresql://127.0.0.1:6432/auth
+    url: jdbc:postgresql://127.0.0.1:15432/root
     username: root
-    password: a1234567!
+    password: 1111

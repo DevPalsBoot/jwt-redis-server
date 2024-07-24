@@ -1,8 +1,6 @@
 package org.devpalsboot.auth.token.domain;
 
-import java.util.Date;
-
-import org.devpalsboot.auth.user.domain.User;
+import org.devpalsboot.auth.user.domain.UserDomain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -12,7 +10,7 @@ class TokenTest {
     @Test
     public void accessToken을_재발급_할_수_있다() {
         //given
-        User user = new User();
+        UserDomain user = new UserDomain();
         user.setEmail("test@sparrow.im");
         user.setPassword("password");
 

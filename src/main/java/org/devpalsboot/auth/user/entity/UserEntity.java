@@ -13,7 +13,7 @@ import java.util.Date;
 @DynamicInsert
 @Setter
 @Getter
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

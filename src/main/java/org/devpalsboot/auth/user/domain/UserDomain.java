@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDomain {
     private String email;
     private String password;
     private String encryptPassword;
-    public User createUser(UserCreate userCreate, PasswordEncoder userPasswordEncoder) {
-        return User.builder()
+    public UserDomain createUser(UserCreate userCreate, PasswordEncoder userPasswordEncoder) {
+        return UserDomain.builder()
                 .email(userCreate.getEmail())
                 .password(userCreate.getPassword())
                 .encryptPassword(userPasswordEncoder.encode(password))
