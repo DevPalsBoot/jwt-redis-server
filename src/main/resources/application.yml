@@ -6,6 +6,13 @@ spring:
       host: 127.0.0.1
       port: 6379
   datasource:
-    url: jdbc:postgresql://127.0.0.1:15432/root
+    url: jdbc:postgresql://127.0.0.1:6432/auth
     username: root
-    password: 1111
+    password: a1234567!
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+setting:
+  db:
+    migration: true
